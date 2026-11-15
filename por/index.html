@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام إدارة النتائج الاحترافي | التكليف النهائي</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- ربط ملف الـ CSS (اسم الملف: css.css) -->
+    <link rel="stylesheet" href="css/css.css">
+</head>
+<body class="bg-app py-5">
+
+    <div class="container">
+        <!-- رأس الصفحة (العنوان الرئيسي ملون بالأحمر) -->
+        <header class="text-center mb-5">
+            <h1 class="fw-bold display-5" style="color: #28206e;">
+                <i class="fa-solid fa-graduation-cap me-2"></i>نظام إدارة النتائج الذكي
+            </h1>
+            <p class="text-secondary fw-semibold">تطبيق ويب تفاعلي لإدارة درجات الطلاب وحساب لجنة الرأفة - التكليف النهائي</p>
+        </header>
+
+        <div class="row g-4">
+            <!-- قسم الإدخال -->
+            <div class="col-lg-5">
+                <div class="card shadow-lg p-4 rounded-4 bg-white">
+                    <!-- عنوان فرعي ملون بالأحمر -->
+                    <h4 class="mb-4 border-bottom pb-2 fw-bold" style="color: #275975;">
+                        <i class="fa-solid fa-user-plus me-2"></i>إضافة طالب جديد
+                    </h4>
+                    
+                    <!-- صندوق رسائل الخطأ -->
+                    <div id="errorBox" class="alert alert-danger d-none shadow-sm" role="alert"></div>
+
+                    <div class="mb-3">
+                        <label for="studentName" class="form-label fw-bold text-dark">اسم الطالب ثلاثي</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light"><i class="fa-solid fa-user text-primary"></i></span>
+                            <input type="text" class="form-control" id="studentName" placeholder="أدخل اسم الطالب">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="sub1" class="form-label fw-bold text-dark">درجة المادة الأولى (0-100)</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light"><i class="fa-solid fa-book text-primary"></i></span>
+                            <input type="number" class="form-control" id="sub1" placeholder="أدخل الدرجة">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="sub2" class="form-label fw-bold text-dark">درجة المادة الثانية (0-100)</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light"><i class="fa-solid fa-book text-primary"></i></span>
+                            <input type="number" class="form-control" id="sub2" placeholder="أدخل الدرجة">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="sub3" class="form-label fw-bold text-dark">درجة المادة الثالثة (0-100)</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light"><i class="fa-solid fa-book text-primary"></i></span>
+                            <input type="number" class="form-control" id="sub3" placeholder="أدخل الدرجة">
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="attendance" class="form-label fw-bold text-dark">نسبة الحضور % (0-100)</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light"><i class="fa-solid fa-percent text-primary"></i></span>
+                            <input type="number" class="form-control" id="attendance" placeholder="أدخل النسبة">
+                        </div>
+                    </div>
+
+                    <button id="addStudentBtn" class="btn btn-primary w-100 py-2 mb-3 fw-bold shadow-sm rounded-pill">
+                        <i class="fa-solid fa-circle-plus me-1"></i> تسجيل وإضافة الطالب
+                    </button>
+                    <button id="mercyBtn" class="btn btn-success w-100 py-2 fw-bold shadow-sm rounded-pill">
+                        <i class="fa-solid fa-wand-magic-sparkles me-1"></i> تفعيل لجنة الرأفة الذكية
+                    </button>
+                </div>
+            </div>
+
+            <!-- قسم العرض والتقارير -->
+            <div class="col-lg-7">
+                <!-- قائمة الطلاب -->
+                <div class="card shadow-lg p-4 rounded-4 bg-white mb-4">
+                    <!-- عنوان فرعي ملون بالأحمر -->
+                    <h4 class="mb-3 border-bottom pb-2 fw-bold" style="color: #180808;">
+                        <i class="fa-solid fa-users-rectangle me-2"></i>قائمة الطلاب المسجلين
+                    </h4>
+                    <div id="studentsListBox" class="p-3 border rounded-3 bg-light scrollable-box" style="min-height: 150px; max-height: 220px; overflow-y: auto;">
+                        <div class="text-center text-muted py-4">
+                            <i class="fa-solid fa-folder-open fa-2x mb-2 text-secondary"></i>
+                            <p class="m-0">لم يتم إضافة طلاب حتى الآن. ابدأ بتسجيل الطلاب عبر النموذج.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- التقرير النهائي للرأفة -->
+                <div class="card shadow-lg p-4 rounded-4 bg-white">
+                    <!-- عنوان فرعي ملون بالأحمر -->
+                    <h4 class="mb-3 border-bottom pb-2 fw-bold" style="color: #1d7783;">
+                        <i class="fa-solid fa-file-invoice me-2"></i>التقرير النهائي للجنة الرأفة
+                    </h4>
+                    <div id="mercyReportBox" class="p-3 border rounded-3 bg-light" style="min-height: 150px;">
+                        <div class="text-center text-muted py-4">
+                            <i class="fa-solid fa-chart-line fa-2x mb-2 text-secondary"></i>
+                            <p class="m-0">لم يتم تفعيل لجنة الرأفة بعد. اضغط على الزر الأخضر لعرض التقارير.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- ربط ملف الجافا سكريبت (اسم الملف: mo.js) -->
+    <script src="js/mo.js"></script>
+</body>
+</html>
